@@ -1,33 +1,41 @@
 import React, { Component } from 'react';
 import './App.css';
 import acquireInfo from '../../apiCalls'
-
-console.log(acquireInfo())
+import Header from '../Header/Header'
+import CardContainer from '../CardContainer/CardContainer'
+import SingleCard from '../SingleCard/SingleCard';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      allMonsters: [],
+      selectedMonster: null,
+      error: ''
+    };
+  }
+
+  componentDidMount() {
+    Promise.all([acquireInfo('level/fresh'), acquireInfo('level/in training'), acquireInfo('level/training'), acquireInfo('level/rookie'), acquireInfo('level/champion'), acquireInfo('level/ultimate'), acquireInfo('level/mega'), acquireInfo('level/armor')])
+    .then(data => console.log(data))
+    .then(data => {
+        this.setState({
+          allMonsters: data
+        });
+      }) 
+    .catch(err => {
+        this.setState({
+          error: err
+        });
+      });
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src="" className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <main>
+        <Header />
+        <CardContainer allMonsters = {this.state.allMonsters}/>
+      </main>
     );
   }
 }
