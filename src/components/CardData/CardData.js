@@ -6,6 +6,7 @@ class CardData extends Component {
     super();
     this.state = {
       card: {},
+      error: ''
     };
   }
 
@@ -16,9 +17,9 @@ class CardData extends Component {
           card: data
         });
       }) 
-    .catch(err => {
+    .catch(() => {
         this.setState({
-          error: err
+          error: "Oops! That card doesn't seem to exist."
         });
       });
   }
