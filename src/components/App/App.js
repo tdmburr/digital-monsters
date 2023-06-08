@@ -6,14 +6,14 @@ import CardContainer from '../CardContainer/CardContainer'
 import Dropdown from '../Dropdown/Dropdown'
 import CardData from '../CardData/CardData'
 import Error from '../Error/Error'
-import { Route, Switch, Redirect } from'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       allMonsters: [],
-      selectedLevel: '',
+      filteredMonsters: [],
       error: ''
     };
   }
@@ -32,26 +32,33 @@ class App extends Component {
       });
   }
 
+  setFilteredMonsters = (monsters) => {
+    this.setState({ filteredMonsters: monsters });
+  }
+
+  fetchDigimon = (name) => {
+    console.log(acquireInfo(name))
+    this.setState({individualDigimon: acquireInfo(name)[0]})
+  }
 
   render() {
     return (
       <main className="App">
         <Header />
         <Switch>
-        <Route path="/digimon/level/:level" render={({ match }) => {
-          return <CardData selectedLevel={match.params.level} />
-        }} />
-        <Route exact path="/error">
-          <Error error="The digital world is currently unavailable. Please try again later"/>
-        </Route>
-        {this.state.error ? <Redirect to="/error"/> :
-        <Route exact path="/">
-          <Dropdown selectedLevel={this.state.selectedLevel}/>
-          <CardContainer allMonsters= {this.state.allMonsters}/>
-        </Route>}
-        <Route>
-          <Redirect to="/error"/>
-        </Route>
+          <Route path="name/:name" render={() => {
+            console.log(this.state.individualDigimon)
+            return <CardData name={this.state.individualDigimon} />
+          }} />
+          <Route exact path="/error">
+            <Error error="The digital world is currently unavailable. Please try again later"/>
+          </Route>
+          {this.state.error ? <Redirect to="/error"/> :
+          <Route exact path="/">
+            <Dropdown allMonsters={this.state.allMonsters} setFilteredMonsters={this.setFilteredMonsters}/>
+            {this.state.filteredMonsters.length > 0 && <CardContainer allMonsters={this.state.filteredMonsters} fetchDigimon={this.fetchDigimon}/>}
+            {this.state.filteredMonsters.length === 0 && <CardContainer allMonsters={this.state.allMonsters} fetchDigimon={this.fetchDigimon}/>}
+          </Route>}
         </Switch>
       </main>
     );

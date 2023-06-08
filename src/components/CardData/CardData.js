@@ -1,40 +1,25 @@
 import React, { Component } from 'react';
 import acquireInfo from '../../apiCalls';
 
-class CardData extends Component {
-  constructor() {
-    super();
-    this.state = {
-      card: {},
-      error: ''
-    };
-  }
+// class CardData extends Component {
+//   constructor({ name}) {
+//     super({ name });
+//     this.state = {
+//       card: {},
+//       error: ''
+//     };
+//   }
 
-  componentDidMount() {
-    acquireInfo()
-    .then(data => {
-        this.setState({
-          card: data
-        });
-      }) 
-    .catch(() => {
-        this.setState({
-          error: "Oops! That card doesn't seem to exist."
-        });
-      });
-  }
-
-  render() {
-    const card = this.state;
+  const CardData = ({name}) => {
 
     return (
-    <section>
-      <img className="cardImg"src={card.img} alt={card.name}/>
-      <h2>{card.name}</h2>
-      <p>{card.level}</p>
-    </section>
+      <section>
+        <img className="cardImg"src={name.img} alt={name.name}/>
+        <h2>{name.name}</h2>
+        <p>{name.level}</p>
+      </section>
     )
   }
-}
+
 
 export default CardData;

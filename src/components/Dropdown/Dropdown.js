@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
+import acquireInfo from '../../apiCalls';
 
 class Dropdown extends Component {
-  constructor() {
-    super();
-    this.state= {
-      selectedLevel: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      filteredDigimon: []
     }
   }
 
-  handleChange = (event) => {
+  handleChange = (value, event) => {
     event.preventDefault();
-    this.setState({selectedLevel: event.target.value});
-  }
-
-  // createOptions = () => {
-  //   const options = .map(() => {
-  //     return (
-  //       <option key={options} value={options}>
-  //         {options}
-  //       </option>
-  //     );
-  //   });
-  //   return options;
-  // };
+    this.setState({ filteredDigimon: this.props.allMonsters.filter(monster => monster.level === value) }, () => {
+      if (this.state.filteredDigimon.length > 0) {
+        this.props.setFilteredMonsters(this.state.filteredDigimon);
+      }
+    });
+  };
 
   render() {
 
@@ -30,17 +24,17 @@ class Dropdown extends Component {
           <form className="dropdown">
             <select
               className="select"
-              value={this.state.selectedLevel}
-              onChange={this.handleChange}>
+              // value={this.state.selectedLevel}
+              onChange={event => this.handleChange(event.target.value, event)}>
               <option value="all">All Digimon</option>  
-              <option value="fresh">Fresh</option>
-              <option value="inTraining">In Training</option>
-              <option value="training">Training</option>
-              <option value="rookie">Rookie</option>
-              <option value="champion">Champion</option>
-              <option value="ultimate">Ultimate</option>
-              <option value="mega">Mega</option>
-              <option value="armor">Armor</option>
+              <option value="Fresh">Fresh</option>
+              <option value="In Training">In Training</option>
+              <option value="Training">Training</option>
+              <option value="Rookie">Rookie</option>
+              <option value="Champion">Champion</option>
+              <option value="Ultimate">Ultimate</option>
+              <option value="Mega">Mega</option>
+              <option value="Armor">Armor</option>
             </select>
           </form>
     )    

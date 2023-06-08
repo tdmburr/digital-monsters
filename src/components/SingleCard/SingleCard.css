@@ -2,7 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #1f2839;
   background-image: linear-gradient(to bottom right, #ff8c00, #007bff);
   background-size: cover;
   min-height: 100vh;

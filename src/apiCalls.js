@@ -1,7 +1,7 @@
-const acquireInfo = (stage) => {
+const acquireInfo = (name) => {
   let endpoint;
-  if (stage) {
-    endpoint = `https://digimon-api.vercel.app/api/digimon/level/${stage}`
+  if (name) {
+    endpoint = `https://digimon-api.vercel.app/api/digimon/name/${name}`
   } else {
     endpoint = 'https://digimon-api.vercel.app/api/digimon'
   }

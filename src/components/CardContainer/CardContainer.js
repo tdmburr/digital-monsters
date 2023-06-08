@@ -1,13 +1,16 @@
 import React from 'react'
 import Error from '../Error/Error'
 import SingleCard from '../SingleCard/SingleCard'
+import { Link } from'react-router-dom'
 import './CardContainer.css'
 
-const CardContainer = ({ allMonsters }) => {
+const CardContainer = ({ allMonsters, fetchDigimon }) => {
   
   const digimon = allMonsters.map(digimon => {
     return (
-    <SingleCard name={digimon.name} img={digimon.img} level={digimon.level} key={digimon.name}/>
+      <Link to={`/name/${digimon.name}`} key={digimon.name} onClick={event => fetchDigimon(digimon.name, event)}>
+        <SingleCard name={digimon.name} img={digimon.img} level={digimon.level} key={digimon.name}/>
+      </Link>  
     )
   })
 
