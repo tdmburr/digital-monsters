@@ -1,11 +1,17 @@
 const acquireInfo = (stage) => {
-  return fetch(`https://digimon-api.vercel.app/api/digimon/${stage}`)
-  .then(response => {
-      if(!response.ok) {
+  let endpoint;
+  if (stage) {
+    endpoint = `https://digimon-api.vercel.app/api/digimon/level/${stage}`
+  } else {
+    endpoint = 'https://digimon-api.vercel.app/api/digimon'
+  }
+  return fetch(endpoint)
+    .then(response => {
+      if (!response.ok) {
         throw new Error("Failed to load digimon data!");
-    }
-    return response.json()
-   })
+      }
+      return response.json()
+    })
 }
 
 

@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
+import acquireInfo from '../../apiCalls';
 
 class CardData extends Component {
   constructor() {
     super();
     this.state = {
       card: {},
-      error: ''
     };
   }
 
+  componentDidMount() {
+    acquireInfo()
+    .then(data => {
+        this.setState({
+          card: data
+        });
+      }) 
+    .catch(err => {
+        this.setState({
+          error: err
+        });
+      });
+  }
+
   render() {
-    const { card, error } = this.state;
+    const card = this.state;
 
     return (
     <section>
