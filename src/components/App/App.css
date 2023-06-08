@@ -8,4 +8,15 @@
   background-size: cover;
   min-height: 100vh;
 }
+
+@media (max-width: 767px) {
+  /* Styles for small devices */
+}
  
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Styles for medium-sized devices */
+}
+
+@media (min-width: 1024px) {
+  /* Styles for large devices */
+}

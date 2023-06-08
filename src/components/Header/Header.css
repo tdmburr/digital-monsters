@@ -4,6 +4,7 @@
   align-items: center;
   background-color: #fdba31;
   height: 150px;
+  width: 100%;
 }
 
 .logo {
@@ -11,5 +12,21 @@
   font-size: 48px;
   font-weight: 800; 
   text-transform: uppercase;
-  text-shadow: 2px 2px 0 white; 
+  text-shadow: 2px 2px 0 white;
+}
+
+.logo:hover {
+  text-decoration: underline;
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: inherit;
 }
