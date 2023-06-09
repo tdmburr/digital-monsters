@@ -9,7 +9,7 @@ const CardContainer = ({ allMonsters, fetchDigimon }) => {
 
   const digimon = allMonsters.map(digimon => {
     return (
-      <Link className="link" to={`/${digimon.name}`} key={digimon.name}>
+      <Link className="link" to={`/digimon/${digimon.name}`} key={digimon.name}>
         <SingleCard name={digimon.name} img={digimon.img} level={digimon.level} key={digimon.name} onClick={() => fetchDigimon(digimon.name)} />
       </Link>
     )

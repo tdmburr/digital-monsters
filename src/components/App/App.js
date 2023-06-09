@@ -6,7 +6,7 @@ import CardContainer from '../CardContainer/CardContainer'
 import Dropdown from '../Dropdown/Dropdown'
 import CardData from '../CardData/CardData'
 import Error from '../Error/Error'
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class App extends Component {
       allMonsters: [],
       filteredMonsters: [],
       individualDigimon: null,
-      error: ''
+      error: false
     };
   }
 
@@ -28,7 +28,7 @@ class App extends Component {
       })
       .catch(() => {
         this.setState({
-          error: "The digital world is currently unavailable. Please try again later."
+          error: true
         });
       });
   }
@@ -46,36 +46,46 @@ class App extends Component {
       })
       .catch(() => {
         this.setState({
-          error: "The digital world is currently unavailable. Please try again later."
+          error: true
         });
       })
   }
 
   render() {
+    if(this.state.error) {
+      return (
+        <div>
+          <Header />
+          <Error error="The digital world is currently unavailable. Please try again later" />
+        </div>
+      )
+    }
+
     return (
       <main className="App">
         <Header />
         <Switch>
-          {this.state.error ? (
-            <Redirect to="/error" />
-          ) : (
-            <Route exact path="/">
-              <Dropdown
-                allMonsters={this.state.allMonsters}
-                setFilteredMonsters={this.setFilteredMonsters}
-              />
-              <CardContainer
-                allMonsters={this.state.filteredMonsters.length > 0 ? this.state.filteredMonsters : this.state.allMonsters}
-                fetchDigimon={this.fetchDigimon}
-              />
-            </Route>
-          )}
-          <Route exact path="/:name" render={({ match }) => {
+          <Route exact path="/">
+            <Dropdown
+              allMonsters={this.state.allMonsters}
+              setFilteredMonsters={this.setFilteredMonsters}
+            />
+            <CardContainer
+              allMonsters={this.state.filteredMonsters.length > 0 ? this.state.filteredMonsters : this.state.allMonsters}
+              fetchDigimon={this.fetchDigimon}
+            />
+          </Route>
+          <Route exact path="/digimon/:name" render={({ match }) => {
             return <CardData name={match.params.name} />
           }} />
-          <Route exact path="/error">
-            <Error error="The digital world is currently unavailable. Please try again later" />
-          </Route>
+          <Route
+            path="/**"
+            render={() => (
+              <div>
+                <Error error="This path does not exist." />
+              </div>
+            )}
+          />
         </Switch>
       </main>
     );
