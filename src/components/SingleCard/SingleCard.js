@@ -1,5 +1,6 @@
 import React from 'react';
 import './SingleCard.css';
+import PropTypes from 'prop-types';
 
 const SingleCard = (props) => {
   return (
@@ -11,3 +12,8 @@ const SingleCard = (props) => {
 };
 
 export default SingleCard;
+
+SingleCard.propTypes = {
+  img: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
+}
