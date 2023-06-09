@@ -2,13 +2,14 @@ import React from 'react'
 import Error from '../Error/Error'
 import SingleCard from '../SingleCard/SingleCard'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import './CardContainer.css'
 
 const CardContainer = ({ allMonsters, fetchDigimon }) => {
 
   const digimon = allMonsters.map(digimon => {
     return (
-      <Link to={`/${digimon.name}`} key={digimon.name}>
+      <Link className="link" to={`/${digimon.name}`} key={digimon.name}>
         <SingleCard name={digimon.name} img={digimon.img} level={digimon.level} key={digimon.name} onClick={() => fetchDigimon(digimon.name)} />
       </Link>
     )
@@ -27,3 +28,7 @@ const CardContainer = ({ allMonsters, fetchDigimon }) => {
 
 export default CardContainer;
 
+CardContainer.propTypes = {
+  allMonsters: PropTypes.array.isRequired,
+  fetchDigimon: PropTypes.func.isRequired
+}

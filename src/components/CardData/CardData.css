@@ -1,0 +1,43 @@
+.singleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  padding-top: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 2px solid orange;
+  background-color: orange;
+  height:50%;
+  margin-top: 100px;
+}
+
+.cardImg {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.cardName {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 white;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.cardLevel {
+  font-size: 18px;
+  color: #666;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 white;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.error {
+  color: red;
+  margin-top: 16px;
+}
