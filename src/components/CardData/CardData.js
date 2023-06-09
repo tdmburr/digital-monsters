@@ -41,7 +41,7 @@ class CardData extends Component {
     const { digimonData } = this.state;
 
     if (!digimonData) {
-      return null; 
+      return null
     }
 
     return (

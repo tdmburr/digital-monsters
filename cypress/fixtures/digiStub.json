@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Koromon",
+    "img": "https://digimon.shadowsmith.com/img/koromon.jpg",
+    "level": "In Training"
+  },
+  {
+      "name": "Agumon",
+      "img": "https://digimon.shadowsmith.com/img/agumon.jpg",
+      "level": "Rookie"
+  },
+  {
+    "name": "Greymon",
+    "img": "https://digimon.shadowsmith.com/img/greymon.jpg",
+    "level": "Champion"
+  },
+  {
+    "name": "MetalGreymon",
+    "img": "https://digimon.shadowsmith.com/img/metalgreymon.jpg",
+    "level": "Ultimate"
+  },
+  {
+    "name": "SkullGreymon",
+    "img": "https://digimon.shadowsmith.com/img/skullgreymon.jpg",
+    "level": "Ultimate"
+  },
+  {
+    "name": "WarGreymon",
+    "img": "https://digimon.shadowsmith.com/img/wargreymon.jpg",
+    "level": "Mega"
+  }
+]
