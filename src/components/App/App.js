@@ -14,18 +14,19 @@ class App extends Component {
     this.state = {
       allMonsters: [],
       filteredMonsters: [],
+      individualDigimon: null,
       error: ''
     };
   }
 
   componentDidMount() {
     acquireInfo()
-    .then(data => {
+      .then(data => {
         this.setState({
           allMonsters: data
         });
       })
-    .catch(() => {
+      .catch(() => {
         this.setState({
           error: "The digital world is currently unavailable. Please try again later."
         });
@@ -37,8 +38,17 @@ class App extends Component {
   }
 
   fetchDigimon = (name) => {
-    console.log(acquireInfo(name))
-    this.setState({individualDigimon: acquireInfo(name)[0]})
+    acquireInfo(name)
+      .then(data => {
+        this.setState({
+          individualDigimon: data[0]
+        })
+      })
+      .catch(() => {
+        this.setState({
+          error: "The digital world is currently unavailable. Please try again later."
+        });
+      })
   }
 
   render() {
@@ -46,19 +56,26 @@ class App extends Component {
       <main className="App">
         <Header />
         <Switch>
-          <Route path="name/:name" render={() => {
-            console.log(this.state.individualDigimon)
-            return <CardData name={this.state.individualDigimon} />
+          {this.state.error ? (
+            <Redirect to="/error" />
+          ) : (
+            <Route exact path="/">
+              <Dropdown
+                allMonsters={this.state.allMonsters}
+                setFilteredMonsters={this.setFilteredMonsters}
+              />
+              <CardContainer
+                allMonsters={this.state.filteredMonsters.length > 0 ? this.state.filteredMonsters : this.state.allMonsters}
+                fetchDigimon={this.fetchDigimon}
+              />
+            </Route>
+          )}
+          <Route exact path="/:name" render={({ match }) => {
+            return <CardData name={match.params.name} />
           }} />
           <Route exact path="/error">
-            <Error error="The digital world is currently unavailable. Please try again later"/>
+            <Error error="The digital world is currently unavailable. Please try again later" />
           </Route>
-          {this.state.error ? <Redirect to="/error"/> :
-          <Route exact path="/">
-            <Dropdown allMonsters={this.state.allMonsters} setFilteredMonsters={this.setFilteredMonsters}/>
-            {this.state.filteredMonsters.length > 0 && <CardContainer allMonsters={this.state.filteredMonsters} fetchDigimon={this.fetchDigimon}/>}
-            {this.state.filteredMonsters.length === 0 && <CardContainer allMonsters={this.state.allMonsters} fetchDigimon={this.fetchDigimon}/>}
-          </Route>}
         </Switch>
       </main>
     );
