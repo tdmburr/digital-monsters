@@ -11,10 +11,10 @@ This repository is deployed at: https://digital-monsters.vercel.app/
 
 ## Learning Goals:
 
-React
-Router
-Asynchronous JavaScript
-End to end testing with Cypress
+- React
+- Router
+- Asynchronous JavaScript
+- End to end testing with Cypress
 
 ## Contributors  //  Links
 
