@@ -48,7 +48,7 @@ class CardData extends Component {
       <section className="singleContainer">
         <img className="cardImg" src={digimonData.img} alt={digimonData.name} />
         <h2 className="cardName">{digimonData.name}</h2>
-        <p className="cardLevel">Stage of Evolution: {digimonData.level}</p>
+        <p className="cardLevel">Stage of Digivolution: {digimonData.level}</p>
       </section>
     );
   }
