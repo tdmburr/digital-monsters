@@ -48,6 +48,8 @@ challenges.) Some issues arose when trying to access a single card's information
 
 ## Project GIF
 
+![Digital Monsters](https://github.com/tdmburr/digital-monsters/assets/109426263/cd35fa83-607a-4bdf-bce0-f655478b6bb3)
+
 ## Technologies 
 
 - React
